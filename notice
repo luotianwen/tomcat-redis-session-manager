@@ -1,0 +1,9 @@
+比如我使用了commons-pool2-2.2.jar和jedis-2.6.1.jar依赖库。要记住把这些jar文件复制到每一个Tomcat实例的lib子目录下。
+在更新了commons-pool、jedis和tomcat版本这些库后，你可以使用build.gradle来构建整个项目。构建完毕后，复制新生成的tomcat-redis-session-manager-1.2.jar到每一个Tomcat实例的lib子目录下。并在修改每一个Tomcat实例的context.xml配置文件：
+[javascript] view plain copy print?在CODE上查看代码片派生到我的代码片
+<Valve className="com.orangefunction.tomcat.redissessions.RedisSessionHandlerValve" />  
+<Manager className="com.orangefunction.tomcat.redissessions.RedisSessionManager"  
+         host="localhost"  
+         port="6379"  
+         database="0"  
+         maxInactiveInterval="60" />  
